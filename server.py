@@ -246,6 +246,11 @@ async def add_favorite(input: FavoriteCreate):
     await db.favorites.insert_one(doc)
     return favorite_obj
 
+
+@api_router.get("/ping")
+async def ping():
+    return {"message": "server is running"}
+
 @api_router.delete("/favorites/{user_id}/{movie_id}")
 async def remove_favorite(user_id: str, movie_id: int):
     result = await db.favorites.delete_one({
